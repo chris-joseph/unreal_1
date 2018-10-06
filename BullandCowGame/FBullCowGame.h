@@ -9,17 +9,23 @@ struct FBullCowCount
 	int32 Bulls = 0;
 	int32 Cows = 0;
 };
+
+enum class EGuessStatus
+{
+	OK,Not_Isogram,Wrong_length,Not_Lowercase,Invalid
+};
+
 class FBullCowGame
 {
 	using FString = std::string;
 public:
 	FBullCowGame();
-	int32 GetMaxTries()const;          //getter
-	int32 GetCurrentTry()const;		 //getter
-	bool IsGameWon()const;			 //getter
-	int32 GetHiddenWordLength()const;
+	int32 GetMaxTries()const;             //getter
+	int32 GetCurrentTry()const;		      //getter
+	bool IsGameWon()const;			      //getter
+	int32 GetHiddenWordLength()const;     //getter
 	void Reset();
-	bool CheckGuessValidity(FString);
+	EGuessStatus CheckGuessValidity(FString)const;
 	FBullCowCount SubmitGuess(FString);
 
 private:

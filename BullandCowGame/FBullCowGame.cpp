@@ -31,9 +31,25 @@ void FBullCowGame::Reset()
 	 MyMaxTries = MAX_TRIES;
 }
 
-bool FBullCowGame::CheckGuessValidity(FString)
+EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess)const
 {
-	return false;
+	if (false)
+	{
+		return EGuessStatus::Not_Isogram;
+	}
+	else if (false)
+	{
+		return EGuessStatus::Not_Lowercase;
+	}
+	else if (Guess.length()!=GetHiddenWordLength())
+	{
+		return EGuessStatus::Wrong_length;
+	}
+	else
+	{
+		return EGuessStatus::OK;
+
+	}
 }
 
 FBullCowCount FBullCowGame::SubmitGuess(FString Guess)

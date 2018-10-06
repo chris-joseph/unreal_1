@@ -6,7 +6,7 @@ using namespace std;
 void PrintIntro();
 void PlayGame();
 void PrintGuess(std::string &Guess);
-string getGuess();
+string getValidGuess();
 bool AskTOPlayAgain();
 int main()
 {
@@ -23,7 +23,7 @@ void PlayGame()
 	constexpr int NUMBER_OF_TURNS = 5;
 	for (int i = 0; i < NUMBER_OF_TURNS; i++)
 	{
-		string Guess = getGuess();									//get Guess
+		string Guess = getValidGuess();									//get Guess
 		PrintGuess(Guess);//repeat the guess back to user
 	}
 }
@@ -51,7 +51,7 @@ void PrintIntro()
 
 //get guess from player
 
-string getGuess()
+string getValidGuess()
 {
 	cout << endl;
 	cout << "Enter a guess : ";
