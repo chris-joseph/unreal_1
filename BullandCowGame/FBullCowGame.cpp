@@ -1,3 +1,5 @@
+
+#pragma once
 #include "FBullCowGame.h"
 #include <map>
 #define TMap std::map

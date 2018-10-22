@@ -1,6 +1,8 @@
+/*contains game logic for better abstraction and no direct user interaction*/
+
 #pragma once
 #include <string>
-
+//making code unreal friendly
 using int32 = int;
 using FString = std::string;
 

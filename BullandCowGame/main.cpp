@@ -1,7 +1,13 @@
+/*view part of the game contains user interactions ,but not game logic for abstraction*/
+
+#pragma once
 #include <iostream>
 #include <string>
 #include"FBullCowGame.cpp"
+
 //using namespace std; preferably not used as confutions may arise
+
+//making code unreal friendly
 using FText = std::string;
 using int32 = int;
 
@@ -25,6 +31,7 @@ int main()
 	} while (bWantsToPlay);
 	return 0;
 }
+//plays a single game to completion
 void PlayGame()
 {
 	//loop
