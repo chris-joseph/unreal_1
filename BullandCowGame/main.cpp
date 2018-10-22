@@ -10,6 +10,7 @@ void PlayGame();
 void PrintGuess(FText &Guess);
 FText getValidGuess();
 bool AskTOPlayAgain();
+void PrintGameSummary();
 
 FBullCowGame  BCGame;
 int main()
@@ -18,22 +19,21 @@ int main()
 	do {
 		Printintro();
 		PlayGame();
+		PrintGameSummary();
 	    bWantsToPlay = AskTOPlayAgain();
-		std::cout << bWantsToPlay;
-		getchar();
+		std::cout << std::endl;
 	} while (bWantsToPlay);
 	return 0;
 }
 void PlayGame()
 {
 	//loop
-	
+	BCGame.Reset();
 	int32 MaxTries = BCGame.GetMaxTries();
-	std::cout << MaxTries << std::endl;
-	for (int32 i = 0; i < MaxTries; i++)
+	std::cout << std::endl;
+	while ( BCGame.GetCurrentTry()<MaxTries && !BCGame.IsGameWon())
 	{
 		FText Guess = getValidGuess();									//get Guess
-
 		FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
 		std::cout << "Bulls ->" << BullCowCount.Bulls;
 		std::cout << "Cows ->" << BullCowCount.Cows << std::endl;
@@ -67,12 +67,12 @@ void Printintro()
 FText getValidGuess()
 {
 	EGuessStatus Status= EGuessStatus::Invalid;
+	FText Guess="";
 	do
 	{
 	int32 CurrentTry=BCGame.GetCurrentTry();
 	std::cout << std::endl;
-	std::cout <<"Try :"<<CurrentTry<< ". Enter a guess : ";
-	FText Guess;
+	std::cout <<"Try :"<<CurrentTry<<" of "<<BCGame.GetMaxTries()<< " -> Enter a guess : ";
 	std::getline(std::cin, Guess);
 	Status = BCGame.CheckGuessValidity(Guess);
 	switch (Status)
@@ -94,17 +94,29 @@ FText getValidGuess()
 		}
 		default:
 		{	
-			return Guess;
+			break;
 		}
 	}
 	std::cout << std::endl;
 }while (Status!= EGuessStatus::OK);
+ return Guess;
 }
 
 bool AskTOPlayAgain()
 {
-	std::cout << "Do you want to play again (y/n) ?";
+	std::cout << "\n\nDo you want to play again (y/n) ?";
 	FText Response = "";
 	std::getline(std::cin,Response);
 	return (Response[0]=='y')||(Response[0] == 'Y');
+}
+void PrintGameSummary() 
+{
+	if (BCGame.IsGameWon()) 
+	{
+		std::cout << "\n**** WeLL DoNE ****";
+	}
+	else
+	{
+		std::cout << " \n Better luck next time ...";
+	}
 }

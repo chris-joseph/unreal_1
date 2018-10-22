@@ -23,15 +23,17 @@ public:
 	int32 GetMaxTries()const;             //getter
 	int32 GetCurrentTry()const;		      //getter
 	bool IsGameWon()const;			      //getter
-	int32 GetHiddenWordLength()const;     //getter
+	int32 GetHiddenWordLength()const;     //getter  
 	void Reset();
 	EGuessStatus CheckGuessValidity(FString)const;
 	FBullCowCount SubmitGuess(FString);
 
 private:
-	int32 MyCurrentTries=1;
-	int32 MyMaxTries=5;
+	int32 MyCurrentTries;
+	int32 MyMaxTries;
 	FString MyHiddenWord;
-	bool IsIsogram(FString);
+	bool bGameIsWon;
+	bool IsIsogram(FString)const;
+	bool IsLowercase(FString)const;
 };
 
